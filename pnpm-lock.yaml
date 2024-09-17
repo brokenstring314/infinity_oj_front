@@ -17,6 +17,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.4.21)
+  vditor:
+    specifier: ^3.10.6
+    version: 3.10.6
   vue:
     specifier: ^3.4.21
     version: 3.4.21(typescript@5.2.2)
@@ -1467,6 +1470,10 @@ packages:
     resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
     dev: true
 
+  /diff-match-patch@1.0.5:
+    resolution: {integrity: sha512-IayShXAgj/QMXgB0IWmKx+rOPuGMhqm5w6jvFxmVenXKIzRqTAAsbBPT3kWQeGANj3jGgvcvv4yK6SxqYmikgw==}
+    dev: false
+
   /duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
     dev: true
@@ -2307,6 +2314,12 @@ packages:
       evtd: 0.2.4
       vue: 3.4.21(typescript@5.2.2)
     dev: true
+
+  /vditor@3.10.6:
+    resolution: {integrity: sha512-W4wsC+VufmoXQn6RJ1MM9/1BQzx+tqeFpmxJiIp6j696LdsxQAXhmIUzd61A/Jp83MDEFdfUZlL43cyDAyXQag==}
+    dependencies:
+      diff-match-patch: 1.0.5
+    dev: false
 
   /vfonts@0.0.3:
     resolution: {integrity: sha512-nguyw8L6Un8eelg1vQ31vIU2ESxqid7EYmy8V+MDeMaHBqaRSkg3dTBToC1PR00D89UzS/SLkfYPnx0Wf23IQQ==}

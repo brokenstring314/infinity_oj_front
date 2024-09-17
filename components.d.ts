@@ -17,6 +17,7 @@ declare module 'vue' {
     Hom: typeof import('./src/components/views/Home.vue')['default']
     Home: typeof import('./src/components/views/Home.vue')['default']
     LoginModal: typeof import('./src/components/views/LoginModal.vue')['default']
+    MdEditor: typeof import('./src/components/MdEditor.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NBackTop: typeof import('naive-ui')['NBackTop']
     NBadge: typeof import('naive-ui')['NBadge']

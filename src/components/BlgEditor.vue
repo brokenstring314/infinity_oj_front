@@ -22,7 +22,7 @@ onMounted(() => {
     codeLens: false, // 代码镜头
     scrollBeyondLastLine: false, // 滚动完最后一行后再滚动一屏幕
     colorDecorators: true, // 颜色装饰器
-    accessibilitySupport: "off", // 辅助功能支持  "auto" | "off" | "on"
+    accessibilitySupport: "on", // 辅助功能支持  "auto" | "off" | "on"
     lineNumbers: "on", // 行号 取值： "on" | "off" | "relative" | "interval" | function
     lineNumbersMinChars: 5, // 行号最小字符   number
     readOnly: false, //是否只读  取值 true | false
