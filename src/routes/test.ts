@@ -29,5 +29,8 @@ export const router: Router = createRouter({
 
 router.beforeEach((to, from) => {
     useroutesStore().routerName = to.name
-
+    if(document.activeElement!=null)
+        (document.activeElement as HTMLElement).blur();
+    // document.activeElement找到当前页面鼠标焦点元素
+    // 进行类型检查后用 blur()使其失焦
 })
