@@ -1,13 +1,15 @@
-import {defineStore} from 'pinia'
+import axios from 'axios';
+import { defineStore } from 'pinia'
+import { ref } from 'vue';
 
 
 interface State {
-    token:string,
+    token: string,
     userForm: UserInfoState;
     isLogin: boolean;
 }
 
-export const userStore:any= defineStore('userStore', () => {
+export const userStore: any = defineStore('userStore', () => {
     const userInfo = ref({})
     // 获取用户信息
     const setUserInfo = async () => {
@@ -26,22 +28,22 @@ export const userStore:any= defineStore('userStore', () => {
         sessionStorage.removeItem('Authorization')
     }
     //判断是否有权限
-    const hasPermission = (name) =>{
+    const hasPermission = (name) => {
         let flag = false
         let permissionId = null
-        permissions.forEach(item =>{
-            if(name === item.name){
+        permissions.forEach(item => {
+            if (name === item.name) {
                 permissionId = item.id
             }
         })
-        if(permissionId && userInfo.value.permission){
-            if(userInfo.value.permission.split(',').indexOf((permissionId.toString())) != -1){
+        if (permissionId && userInfo.value.permission) {
+            if (userInfo.value.permission.split(',').indexOf((permissionId.toString())) != -1) {
                 flag = true
             }
         }
         return flag
     }
-    return { userInfo,setUserInfo,clearUserInfo,hasPermission }
+    return { userInfo, setUserInfo, clearUserInfo, hasPermission }
 }, {
     persist: true
 })

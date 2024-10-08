@@ -2,6 +2,9 @@
 import {defineComponent, h, ref, Component} from 'vue'
 import {MenuOption} from "naive-ui";
 import {RouterLink} from "vue-router";
+import {useroutesStore} from '../../store/RoutesStore/RoutesStore.ts'
+
+
 
 const menuOptions: MenuOption[] = [
   // {
@@ -31,7 +34,7 @@ const menuOptions: MenuOption[] = [
             },
             { default: () => '首页' }
         ),
-    key: 'go-home',
+    key: 'home',
   },
   {
     label: () =>
@@ -44,7 +47,7 @@ const menuOptions: MenuOption[] = [
             },
             { default: () => '题库' }
         ),
-    key: 'go-questionBank',
+    key: 'questionBank',
   },
   {
     label: () =>
@@ -57,7 +60,7 @@ const menuOptions: MenuOption[] = [
             },
             { default: () => '提交记录' }
         ),
-    key: 'go-questionSubmitRecord',
+    key: 'questionSubmitRecord',
   },
   {
     label: '1973年的弹珠玩具',
@@ -71,18 +74,23 @@ const menuOptions: MenuOption[] = [
     ]
   }
 ]
+
+
+let routesStore=useroutesStore()
+
 </script>
 
 <template>
+  <div>{{routesStore.routerName}}</div>
   <div class="flex flex-col center" id="test">
     <n-menu
         class="h-full"
-        v-model:value="activeKey"
         mode="horizontal"
+        :value="routesStore.routerName"
         :options="menuOptions"
         responsive
         watch-props
-        on-update:value
+
     />
   </div>
 </template>
