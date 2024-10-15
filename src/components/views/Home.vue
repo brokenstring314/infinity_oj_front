@@ -1,15 +1,23 @@
 <script setup lang="ts">
-
-import MdEditor from "../MdEditor.vue";
+import Announcement from './Announcement.vue';
+import CompetitionInformation from './CompetitionInformation.vue';
+import SmallRankList from './SmallRankList.vue'
 </script>
 
 <template>
-  <div >
-    <h2>欢迎大佬</h2>
-  </div>
-  <MdEditor></MdEditor>
+  <n-flex>
+    <main>
+      <Announcement></Announcement>
+      <CompetitionInformation></CompetitionInformation>
+    </main>
+    <aside>
+      <SmallRankList></SmallRankList>
+    </aside>
+  </n-flex>
 </template>
 
 <style scoped>
-
+main {
+  width: 40%;
+}
 </style>
