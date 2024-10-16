@@ -4,7 +4,7 @@
 
 <template>
 
-  <n-card title="卡片">
+  <n-card title="卡片" class="shadow-md">
     <n-space justify="space-between">
       <div>主标题</div>
       <div>发布人</div>
@@ -16,8 +16,4 @@
   </n-card>
 </template>
 
-<style scoped>
-.n-card {
-  max-width: 500px;
-}
-</style>
+<style scoped></style>

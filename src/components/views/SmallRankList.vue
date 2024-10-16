@@ -32,7 +32,7 @@ function createColumns() {
 </script>
 
 <template>
-    <n-card title="排名">
+    <n-card title="排名" class="shadow-md mt-5">
         <n-data-table :data="data" :columns="createColumns()" :bordered="false" />
     </n-card>
 </template>
