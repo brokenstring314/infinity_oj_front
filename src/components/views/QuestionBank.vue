@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {ref} from 'vue'
-import {Search} from '@icon-park/vue-next'
+import { ref } from 'vue'
+import { Search } from '@icon-park/vue-next'
 import QuestionBankSearch from "./QuestionBankSearch.vue";
 import QuestionBankList from "./QuestionBankList.vue";
 
@@ -22,14 +22,10 @@ let questionsLevel: Array<any> = [
 </script>
 
 <template>
-  <div class="flex">
-    <n-card :bordered="false">
-      <question-bank-search></question-bank-search>
-      <question-bank-list class="mt-8"></question-bank-list>
-    </n-card>
-  </div>
+  <n-card :bordered="false" class="w-full">
+    <question-bank-search class="shadow-md w-full"></question-bank-search>
+    <question-bank-list class="mt-8 shadow-md w-full"></question-bank-list>
+  </n-card>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

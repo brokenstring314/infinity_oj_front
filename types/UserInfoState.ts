@@ -5,8 +5,9 @@
 //     sex: ''
 // }
 
-interface UserInfoState {
-    user: string;
-    uid: string;
-    role: number;
+export interface UserInfoState {
+    username: string
+    uid:number
+    tokenName:string
+    tokenValue:string
 }

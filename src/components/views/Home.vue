@@ -24,6 +24,6 @@ import OwnFrame from './OwnFrame.vue';
 
 <style scoped>
 main {
-  width: 40%;
+  width: 50%;
 }
 </style>
