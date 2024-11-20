@@ -7,12 +7,12 @@ const routes: any[] = [
     {
         name: "myTemplate", path: '/', component: () => import('../components/layout/MyTemplate.vue'), children: [
             {
-                name: "home", path: '', component: () => import('../components/views/Home.vue'), children: [
+                name: "home", path: '', component: () => import('../components/layout/Home.vue'), children: [
 
                 ]
             },
             {
-                name: "questionBank", path: 'questionBank', component: () => import('../components/views/QuestionBank.vue'), children: [
+                name: "questionBank", path: 'questionBank/:page', component: () => import('../components/layout/QuestionBank.vue'), children: [
 
                 ],
             },
@@ -21,20 +21,11 @@ const routes: any[] = [
 
                 ],
             },
+            {
+                name: 'ProblemDetail', path: 'ProblemDetail/:id', component: () => import('../components/layout/ProblemDetail.vue')
+            },
         ]
-    },
-
-    {
-        name: "register", path: '/register', component: () => import('../components/views/Register.vue'), children: [
-
-        ]
-    },
-    {
-        name: "login", path: '/login', component: () => import('../components/views/Login.vue'), children: [
-
-        ]
-    },
-
+    }
 
 ]
 

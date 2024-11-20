@@ -1,41 +1,37 @@
 <script setup lang="ts">
 import type { QuestionListInfoState } from '../../../types/OutTypes'
-import { defineComponent, h, ref, Ref } from 'vue'
-import { NButton, NTag, useMessage, NProgress } from 'naive-ui'
+import { h, ref, Ref } from 'vue'
+import { NTag, NProgress } from 'naive-ui'
 import type { DataTableColumns } from 'naive-ui'
-// export interface QuestionListInfoState {
-//     questionId:number
-//     questionName:string
-//     tags:string[]
-//     difficultyScores:number
-//     passRate:number
-// }
+import { useQuestionStore } from '../../store/index'
+import { router } from '../../routes/router'
 
-//当前页
-const page: Ref<number> = ref(1)
+const questionStore = useQuestionStore()
 
-//题目列表数据
-const data: QuestionListInfoState[] = [
-  {
-    questionId: 1,
-    questionName: 'blg bl l',
-    tags: ['blg', 'myg'],
-    difficultyScores: 123,
-    passRate: 12.6
-  }
-]
 
+
+
+
+
+//是否加载完成
+const isLoadFinish: Ref<boolean> = ref(false)
+//获取数据方法
+const getQuestionList = async () => {
+  isLoadFinish.value = false
+  await questionStore.getQuestionList()
+  isLoadFinish.value = true
+}
 //题目列表列信息
 function createColumns(): DataTableColumns<QuestionListInfoState> {
   return [
     {
       title: '题目编号',
-      key: 'questionId',
+      key: 'problemId',
       width: 120
     },
     {
       title: '题目名称',
-      key: 'questionName'
+      key: 'title'
 
     },
     {
@@ -53,7 +49,7 @@ function createColumns(): DataTableColumns<QuestionListInfoState> {
               bordered: false
             },
             {
-              default: () => tagKey
+              default: () => tagKey.tagName
             }
           )
         })
@@ -62,37 +58,65 @@ function createColumns(): DataTableColumns<QuestionListInfoState> {
     },
     {
       title: '难度分数',
-      key: 'difficultyScores',
+      key: 'score',
       width: 100
     },
     {
       title: '通过率',
-      key: 'passRate',
+      key: 'submission_count',
       width: 250,
       render(row) {
         return h(
           NProgress, {
           type: 'line',
-          percentage: row.passRate,
+          percentage: row.submission_count === 0 ? 0 : row.accepted_count * 100 / row.submission_count,
           height: 17,
           showIndicator: false
         }
         )
       }
+    },
+    {
+      title: '通过人数',
+      key: 'accepted_count',
+      width: 100,
+    },
+    {
+      title: '',
+      key: 'solve_status',
+      width: 40,
+      render(row) {
+        return questionStore.isPassageH(row.solve_status)
+      }
     }
   ]
 }
 
+//跳转到题目
+const onRowClick = (row: any) => {
+  return {
+    style: 'cursor: pointer;',
+    onClick: () => {
+      router.push({ path: `/ProblemDetail/${row.problemId}` })
+    }
+  }
+}
+
+getQuestionList()
 </script>
 
 <template>
+
   <n-card title="题目列表">
     <n-list>
       <template #default>
-        <n-data-table :columns="createColumns()" :data="data" :max-height="1800" />
+        <n-data-table :columns="createColumns()" :data="questionStore.questionList" :max-height="1800"
+          :row-props="onRowClick" />
       </template>
       <template #footer>
-        <n-pagination v-model:page="page" :page-count="100" class="m-auto" />
+        <n-pagination v-model:page="questionStore.current"
+          :page-count="Math.floor(questionStore.questionList.length / 20) + (questionStore.questionList.length % 20 ? 1 : 0)"
+          class="m-auto" />
       </template>
     </n-list>
   </n-card>

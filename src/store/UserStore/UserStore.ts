@@ -1,14 +1,16 @@
-import axios from 'axios';
 import { defineStore } from 'pinia'
-import { ref,Ref } from 'vue';
-import type {UserInfoState} from '../../../types/OutTypes'
+import { ref, Ref } from 'vue';
+import type { UserInfoState } from '../../../types/OutTypes'
 
 
 
 export const useUserStore: any = defineStore('userStore', () => {
-    const userInfo:Ref<UserInfoState|undefined> = ref()
+    const userInfo: Ref<UserInfoState | undefined> = ref()
 
-    return { userInfo}
+    const clearInfo = () => {
+        userInfo.value = undefined
+    }
+    return { userInfo, clearInfo }
 }, {
     persist: true
 })

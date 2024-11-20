@@ -1,5 +1,6 @@
 import { request } from '../utils/request.ts'
 import type { LoginInfoState } from '../../types/LoginInfoState.ts'
+import { useUserStore } from '../store/index.ts'
 
 
 export const userRegisterService = (info: LoginInfoState) => {

@@ -4,16 +4,20 @@ import type { FormInst, FormRules } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import type { LoginInfoState } from '../../../types/OutTypes'
 import { userLoginService } from '../../api/user'
+import { useUserStore } from '../../store/index'
 
+//用户商店
+const userStore = useUserStore()
+//表单dom
 const formRef: Ref<FormInst | null> = ref(null)
-
+//使用提示信息
 const message = useMessage()
-
+//登录信息
 const model: Ref<LoginInfoState> = ref({
     username: null,
     password: null,
 })
-
+//登录信息规则
 const rules: FormRules = {
     username: [
         {
@@ -30,12 +34,15 @@ const rules: FormRules = {
         }
     ]
 }
-
+//登录事件
 const handleValidateButtonClick = (e: MouseEvent) => {
     e.preventDefault()
     formRef.value?.validate(async (errors) => {
         if (!errors) {
-            await userLoginService(model.value)
+            const data = await userLoginService(model.value)
+            //存入用户信息
+            userStore.userInfo = data.data
+            userStore.userInfo.username = model.value.username
         } else {
             message.error('验证失败')
         }

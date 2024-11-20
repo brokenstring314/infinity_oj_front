@@ -1,52 +1,60 @@
 <script setup lang="ts">
-
-import { Search } from "@icon-park/vue-next"
 import { Add } from '@vicons/ionicons5'
 import { Ref, ref } from "vue"
-import SelectTags from './SelectTags.vue'
+import { useQuestionStore } from '../../store/index'
+import SelectTagsTabs from './SelectTagsTabs.vue'
+import { RemoveSharp } from '@vicons/ionicons5'
 
-const tagsList: Ref<string[]> = ref([
-  'blg', 'das', 'trr', 'dsdas', 'dsadas', 'dsa'
-])
+//控制模态框是否展示
 const showModal: Ref<boolean> = ref(false)
-const tagsSet: Ref<Set<string>> = ref(new Set())
 
-const changeTags = (name: string) => {
-  if (!tagsSet.value.delete(name))
-    tagsSet.value.add(name)
+
+//问题仓库
+const questionStore = useQuestionStore()
+
+//控制只能输入数字
+const onlyAllowNumber = (value: string) => !value || /^\d+$/.test(value)
+
+const onSearch = async () => {
+  await questionStore.getQuestionList()
 }
-
-
 </script>
 
 <template>
 
   <n-card title="筛选条件" class="min-w-80">
-    <div class="flex flex-col sm:flex-row sm:items-center">
-      <div class="flex flex-col sm:flex-row w-full sm:items-center">
-        <span class="min-w-28 ml-2 mr-2">题目难度</span>
-        <n-select placeholder="题目难度" class="min-w-36 max-w-54" />
-        <span class="min-w-28 ml-2 mr-2 sm:ml-4 sm:mr-4">关键词搜索</span>
-        <n-input class="min-w-36 max-w-128" placeholder="标题或题目编号">
-          <template #suffix>
-            <search class="flex items-center" theme="outline" size="24" fill="#333" />
-          </template>
-        </n-input>
-      </div>
+
+    <div class="flex items-center mb-5">
+      <div class="min-w-26">选择难度</div>
+      <n-input style="width: 100px;" type="text" :allow-input="onlyAllowNumber" placeholder="最小分数"
+        v-model:value="questionStore.searchIfon.lowScore" />
+      <n-icon :component="RemoveSharp"></n-icon>
+      <n-input style="width: 100px;" type="text" :allow-input="onlyAllowNumber" placeholder="最大分数"
+        v-model:value="questionStore.searchIfon.highScore" />
     </div>
-    <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-      <span class="min-w-28 ml-2 mr-2">题目标签</span>
+
+    <div class="flex items-center mb-5">
+      <div class="min-w-26">搜索题目</div>
+      <n-input style="width: 400px;" placeholder="输入题目名称" v-model:value="questionStore.searchIfon.searchString" />
+    </div>
+
+    <div class="flex items-center mb-5">
+      <span class="min-w-26">题目标签</span>
       <n-button type="primary" dashed @click="showModal = true">
         <n-icon :component="Add"></n-icon>
       </n-button>
       <n-modal v-model:show="showModal" :mask-closable="false" preset="card" class="min-w-fit max-w-4xl max-h-fit">
-        <h2>选择标签</h2>
-        <select-tags v-for="tagName in tagsList" @changeTags="changeTags" :name="tagName"
-          :is-select="tagsSet.has(tagName)"></select-tags>
+        <SelectTagsTabs></SelectTagsTabs>
       </n-modal>
-      <n-tag v-for="tagName in tagsSet" class="ml-2" type="info" closable @close="changeTags(tagName)">
-        {{ tagName }}
+      <n-tag v-for="tag in questionStore.tagIsSelectList" class="ml-2" type="info" closable
+        @close="questionStore.delectTag(tag)">
+        {{ tag.tagName }}
       </n-tag>
+    </div>
+
+    <div>
+      <n-button class="min-w-26 mr-5" type="success" @click="onSearch">搜索</n-button>
+      <n-button class="min-w-26" type="info" @click="questionStore.clearSearchInfo">清空</n-button>
     </div>
   </n-card>
 </template>

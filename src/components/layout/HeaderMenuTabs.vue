@@ -7,22 +7,6 @@ import { useroutesStore } from '../../store/RoutesStore/RoutesStore.ts'
 
 
 const menuOptions: MenuOption[] = [
-  // {
-  //   label: () =>
-  //       h(
-  //           RouterLink,
-  //           {
-  //             to: {
-  //               name: 'test',
-  //               params: {
-  //                 lang: 'zh-CN'
-  //               }
-  //             }
-  //           },
-  //           {default: () => '回家'}
-  //       ),
-  //   key: 'hear-the-wind-sing',
-  // },
   {
     label: () =>
       h(
@@ -42,7 +26,7 @@ const menuOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
-            path: '/questionBank'
+            path: '/questionBank/1'
           }
         },
         { default: () => '题库' }

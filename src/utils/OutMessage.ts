@@ -12,11 +12,26 @@ const msg = new Map<number, MsgInfoState>([
     [1015, { whetherSuccess: false, msg: "请求太过频繁,请等一等" }],
 ])
 
+const colorMsg = new Map<number, string>([
+    [0, '#94a3b8'],
+    [1, '#84cc16'],
+    [2, '#ef4444'],
+    [3, '#fde047'],
+    [4, '#fde047'],
+    [5, '#c026d3'],
+    [6, '#c026d3'],
+    [7, '#431407']
+])
+
 export const outMessage = (code: number): void => {
     const ans: MsgInfoState | undefined = msg.get(code)
     if (ans?.whetherSuccess)
         message.success(ans.msg)
     else if (ans)
         message.error(ans.msg)
+}
+
+export const outMsgColor = (code: number): string => {
+    return colorMsg.get(code) || ''
 }
 
