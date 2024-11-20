@@ -4,7 +4,6 @@ import type { QuestionListInfoState, tagState } from '../../../types/OutTypes'
 import { CheckmarkSharp, Close, RemoveSharp } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
 import { getSimpleProblemListByTagService } from '../../api/question'
-import { useRoute } from 'vue-router'
 
 export const useQuestionStore = defineStore('question', () => {
 	//已选择tag列表
@@ -28,9 +27,9 @@ export const useQuestionStore = defineStore('question', () => {
 		tagIsSelectList.value.push(tag)
 	}
 
-	const getQuestionList = async () => {
+	const getQuestionList = async (page: any) => {
 
-		questionList.value = (await getSimpleProblemListByTagService()).data.records
+		questionList.value = (await getSimpleProblemListByTagService(page)).data.records
 
 		console.log(questionList.value)
 	}

@@ -5,8 +5,12 @@ import { NTag, NProgress } from 'naive-ui'
 import type { DataTableColumns } from 'naive-ui'
 import { useQuestionStore } from '../../store/index'
 import { router } from '../../routes/router'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const questionStore = useQuestionStore()
+
 
 
 
@@ -18,7 +22,7 @@ const isLoadFinish: Ref<boolean> = ref(false)
 //获取数据方法
 const getQuestionList = async () => {
   isLoadFinish.value = false
-  await questionStore.getQuestionList()
+  await questionStore.getQuestionList(route.params.page)
   isLoadFinish.value = true
 }
 //题目列表列信息
@@ -114,7 +118,7 @@ getQuestionList()
           :row-props="onRowClick" />
       </template>
       <template #footer>
-        <n-pagination v-model:page="questionStore.current"
+        <n-pagination
           :page-count="Math.floor(questionStore.questionList.length / 20) + (questionStore.questionList.length % 20 ? 1 : 0)"
           class="m-auto" />
       </template>
