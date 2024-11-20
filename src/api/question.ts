@@ -4,7 +4,7 @@ import { GetProblemListState } from '../../types/OutTypes.ts'
 import { useRoute } from 'vue-router'
 
 
-export const getSimpleProblemListByTagServic = () => {
+export const getSimpleProblemListByTagService = () => {
 	const questionStore = useQuestionStore()
 	const route = useRoute()
 	const data: GetProblemListState = {
@@ -25,15 +25,15 @@ export const getSimpleProblemListByTagServic = () => {
 	console.log(data)
 	return request.post('api/problem/getSimpleProblemListByTag', data)
 }
-export const getAllQuestionTagServic = () => {
+export const getAllQuestionTagService = () => {
 	return request.post('api/problem/getAllTag')
 
 }
-export const getProblemServic = (problemId: any) => {
+export const getProblemService = (problemId: any) => {
 
 	return request.post('api/problem/getProblem', { problemId: problemId })
 }
-export const submitProblemServic = (problemId: any, language: string, code: string) => {
+export const submitProblemService = (problemId: any, language: string, code: string) => {
 	const userStore = useUserStore()
 	const data = {
 		problemId: problemId,
@@ -43,8 +43,8 @@ export const submitProblemServic = (problemId: any, language: string, code: stri
 	}
 	return request.post('api/problem/submitProblem', data)
 }
-export const getSubmissionServic = (submissionId: number) => {
-	return request.post('api/problem/getSubmission', {submissionId:submissionId})
+export const getSubmissionService = (submissionId: number) => {
+	return request.post('api/problem/getSubmission', "submissionId="+submissionId)
 }
 // export const getQuestionContentServic = (id) => {
 // 	return request.post('question/getQuestionContent', { id })

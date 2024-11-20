@@ -2,7 +2,7 @@
 import * as monaco from 'monaco-editor'
 import { onMounted, ref, Ref, toRaw } from 'vue'
 import { useResizeObserver } from "@vueuse/core";
-import { submitProblemServic, getSubmissionServic } from '../../api/question'
+import { submitProblemService, getSubmissionService } from '../../api/question'
 import { useRoute } from 'vue-router';
 import { outMsgColor } from '../../utils/OutMessage'
 const route = useRoute();
@@ -68,11 +68,11 @@ useResizeObserver(divDom, (entries: any) => {
 const onSubmit = async () => {
     result.value = "正在评测..."
     showResult.value = false
-    const data = await submitProblemServic(route.params.id, language.value, btoa(toRaw(editor.value).getModel().getValue()))
+    const data = await submitProblemService(route.params.id, language.value, btoa(toRaw(editor.value).getModel().getValue()))
     console.log(data.data)
     setTimeout(() => { }, 1000)
-    const submissionData = (await getSubmissionServic(data.data)).data
-
+    const submissionData = (await getSubmissionService(data.data)).data
+    console.log(submissionData)
     resultColor.value = outMsgColor(submissionData.numberOfDependents)
     showResult.value = true
 

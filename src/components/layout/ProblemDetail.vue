@@ -5,7 +5,7 @@ import { RouterLink, useRoute } from "vue-router";
 import { BookmarkOutline, CaretDownOutline } from '@vicons/ionicons5'
 import PromlemText from '../views/PromlemText.vue'
 import CodeEditor from '../views/CodeEditor.vue'
-import { getProblemServic } from '../../api/question'
+import { getProblemService } from '../../api/question'
 //使用路由
 const route = useRoute()
 //菜单是否打开
@@ -56,7 +56,7 @@ const isLoading: Ref<boolean> = ref(false)
 const data = ref()
 onMounted(async () => {
     isLoading.value = false
-    data.value = await (await getProblemServic(route.params.id)).data
+    data.value = await (await getProblemService(route.params.id)).data
     console.log(data.value)
     isLoading.value = true
 })

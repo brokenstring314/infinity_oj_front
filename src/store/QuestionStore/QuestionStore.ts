@@ -3,7 +3,7 @@ import { ref, Ref, h } from 'vue'
 import type { QuestionListInfoState, tagState } from '../../../types/OutTypes'
 import { CheckmarkSharp, Close, RemoveSharp } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
-import { getSimpleProblemListByTagServic } from '../../api/question'
+import { getSimpleProblemListByTagService } from '../../api/question'
 import { useRoute } from 'vue-router'
 
 export const useQuestionStore = defineStore('question', () => {
@@ -30,7 +30,7 @@ export const useQuestionStore = defineStore('question', () => {
 
 	const getQuestionList = async () => {
 
-		questionList.value = (await getSimpleProblemListByTagServic()).data.records
+		questionList.value = (await getSimpleProblemListByTagService()).data.records
 
 		console.log(questionList.value)
 	}

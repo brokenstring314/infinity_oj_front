@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { tagState } from '../../../types/OutTypes'
 import SelectTags from './SelectTags.vue'
-import { getAllQuestionTagServic } from '../../api/question'
+import { getAllQuestionTagService } from '../../api/question'
 import { ref, Ref, onMounted } from 'vue'
 //tag分类列表
 const tagsClassifyList: Ref<string[]> = ref([])
@@ -13,7 +13,7 @@ const isLoadFinish: Ref<boolean> = ref(false)
 
 //获取数据
 onMounted(async () => {
-  tagList.value = await (await getAllQuestionTagServic()).data
+  tagList.value = await (await getAllQuestionTagService()).data
   tagList.value.forEach((element: tagState) => {
     tagsClassifyList.value.push(element.tagCategory)
   });
