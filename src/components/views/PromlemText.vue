@@ -1,11 +1,28 @@
 <script lang="ts" setup>
 import { createDiscreteApi } from 'naive-ui';
+import MarkdownIt from 'markdown-it'
+
+
+
+const markdown = new MarkdownIt()
 
 const { message } = createDiscreteApi(["message"]);
 
 const props = defineProps({
     inputExamples: String,
-    outputExamples: String
+    outputExamples: String,
+    input: {
+        type: String,
+        required: true
+    },
+    out: {
+        type: String,
+        required: true
+    },
+    detail: {
+        type: String,
+        required: true
+    }
 });
 const exampleList: any = [
     { example_input: props.inputExamples, example_out: props.outputExamples }
@@ -44,16 +61,17 @@ const onCopy = (text: string) => {
         <div class="mb-24">
             <h3>题目描述</h3>
             <slot name="detail"></slot>
+            <div v-html="markdown.render(props.detail)"></div>
         </div>
 
         <div class="mb-24">
             <h3>题目输入</h3>
-            <slot name="input"></slot>
+            <div v-html="markdown.render(props.input)"></div>
         </div>
 
         <div class="mb-24">
             <h3>题目输出</h3>
-            <slot name="out"></slot>
+            <div v-html="markdown.render(props.out)"></div>
         </div>
 
         <div>

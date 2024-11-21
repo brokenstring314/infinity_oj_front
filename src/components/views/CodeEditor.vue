@@ -64,7 +64,7 @@ useResizeObserver(divDom, (entries: any) => {
     fixedWidth.value = `${width}px`
 })
 
-
+//提交事件
 const onSubmit = async () => {
     result.value = "正在评测..."
     resultColor.value = '#e2e8f0'

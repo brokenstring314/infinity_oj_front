@@ -4,10 +4,12 @@ import { Ref, ref } from "vue"
 import { useQuestionStore } from '../../store/index'
 import SelectTagsTabs from './SelectTagsTabs.vue'
 import { RemoveSharp } from '@vicons/ionicons5'
+import { useRoute } from 'vue-router'
 
 //控制模态框是否展示
 const showModal: Ref<boolean> = ref(false)
 
+const route = useRoute()
 
 //问题仓库
 const questionStore = useQuestionStore()
@@ -16,7 +18,7 @@ const questionStore = useQuestionStore()
 const onlyAllowNumber = (value: string) => !value || /^\d+$/.test(value)
 
 const onSearch = async () => {
-  await questionStore.getQuestionList()
+  await questionStore.getQuestionList(route.params.page)
 }
 </script>
 

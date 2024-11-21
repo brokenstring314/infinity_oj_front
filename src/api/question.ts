@@ -6,7 +6,7 @@ import { GetProblemListState } from '../../types/OutTypes.ts'
 
 export const getSimpleProblemListByTagService = (page: any) => {
 	const questionStore = useQuestionStore()
-	
+
 	const data: GetProblemListState = {
 		searchString: questionStore.searchIfon?.searchString ? questionStore.searchIfon.searchString : '',
 		highScore: questionStore.searchIfon?.highScore ? questionStore.searchIfon.highScore : 99999999,

@@ -74,13 +74,11 @@ onMounted(async () => {
                 <n-split direction="horizontal" :max="0.75" :min="0.25">
                     <template #1>
                         <n-spin size="large" v-if="!isLoading" />
-                        <PromlemText :input-examples="data.inputExamples" :output-examples="data.outputExamples" v-else>
+                        <PromlemText :input-examples="data.inputExamples" :output-examples="data.outputExamples"
+                            :input="data.input" :out="data.output" :detail="data.description" v-else>
                             <template #title>{{ data.title }}</template>
                             <template #timeLimit>{{ data.timeLimit }}</template>
                             <template #memoryLimit>{{ data.memoryLimit }}</template>
-                            <template #detail>{{ data.description }}</template>
-                            <template #input>{{ data.input }}</template>
-                            <template #out>{{ data.output }}</template>
                         </PromlemText>
                     </template>
                     <template #2>
