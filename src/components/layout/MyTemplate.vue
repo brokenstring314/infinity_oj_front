@@ -20,7 +20,7 @@ import UserAvatar from './UserAvatar.vue';
                 </n-grid-item>
             </n-grid>
         </n-layout-header>
-        <n-layout-content>
+        <n-layout-content class="mt-12">
             <Transition name="fade">
                 <router-view></router-view>
             </Transition>
