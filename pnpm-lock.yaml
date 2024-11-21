@@ -20,6 +20,9 @@ importers:
       markdown-it:
         specifier: ^14.1.0
         version: 14.1.0
+      markdown-it-katex:
+        specifier: ^2.0.3
+        version: 2.0.3
       monaco-editor:
         specifier: ^0.49.0
         version: 0.49.0
@@ -1252,6 +1255,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  katex@0.6.0:
+    resolution: {integrity: sha512-rS4mY3SvHYg5LtQV6RBcK0if7ur6plyEukAOV+jGGPqFImuzu8fHL6M752iBmRGoUyF0bhZbAPoezehn7xYksA==}
+    hasBin: true
+
   klona@2.0.6:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
@@ -1318,6 +1325,9 @@ packages:
   markdown-it-ins@3.0.1:
     resolution: {integrity: sha512-32SSfZqSzqyAmmQ4SHvhxbFqSzPDqsZgMHDwxqPzp+v+t8RsmqsBZRG+RfRQskJko9PfKC2/oxyOs4Yg/CfiRw==}
 
+  markdown-it-katex@2.0.3:
+    resolution: {integrity: sha512-nUkkMtRWeg7OpdflamflE/Ho/pWl64Lk9wNBKOmaj33XkQdumhXAIYhI0WO03GeiycPCsxbmX536V5NEXpC3Ng==}
+
   markdown-it-mark@3.0.1:
     resolution: {integrity: sha512-HyxjAu6BRsdt6Xcv6TKVQnkz/E70TdGXEFHRYBGLncRE9lBFwDNLVtFojKxjJWgJ+5XxUwLaHXy+2sGBbDn+4A==}
 
@@ -1340,6 +1350,9 @@ packages:
   markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
+
+  match-at@0.1.1:
+    resolution: {integrity: sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==}
 
   mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
@@ -3174,6 +3187,10 @@ snapshots:
 
   json5@2.2.3: {}
 
+  katex@0.6.0:
+    dependencies:
+      match-at: 0.1.1
+
   klona@2.0.6: {}
 
   knitwork@1.1.0: {}
@@ -3235,6 +3252,10 @@ snapshots:
 
   markdown-it-ins@3.0.1: {}
 
+  markdown-it-katex@2.0.3:
+    dependencies:
+      katex: 0.6.0
+
   markdown-it-mark@3.0.1: {}
 
   markdown-it-sub@1.0.0: {}
@@ -3261,6 +3282,8 @@ snapshots:
       mdurl: 2.0.0
       punycode.js: 2.3.1
       uc.micro: 2.1.0
+
+  match-at@0.1.1: {}
 
   mdn-data@2.0.30: {}
 

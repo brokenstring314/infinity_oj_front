@@ -63,12 +63,16 @@ function createColumns(): DataTableColumns<QuestionListInfoState> {
     {
       title: '难度分数',
       key: 'score',
-      width: 100
+      width: 100,
+      sorter: {
+      compare: (a, b) => a.score - b.score,
+      multiple: 2
+    }
     },
     {
       title: '通过率',
       key: 'submission_count',
-      width: 250,
+      width: 240,
       render(row) {
         return h(
           NProgress, {
@@ -81,9 +85,13 @@ function createColumns(): DataTableColumns<QuestionListInfoState> {
       }
     },
     {
-      title: '通过人数',
+      title: '通过提交数',
       key: 'accepted_count',
-      width: 100,
+      width: 120,
+      sorter: {
+      compare: (a, b) => a.accepted_count - b.accepted_count,
+      multiple: 3
+    }
     },
     {
       title: '',

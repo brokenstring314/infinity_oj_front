@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { createDiscreteApi } from 'naive-ui';
 import MarkdownIt from 'markdown-it'
-
-
-
+import mk from 'markdown-it-katex';
 const markdown = new MarkdownIt()
-
+markdown.use(mk);
 const { message } = createDiscreteApi(["message"]);
 
 const props = defineProps({
@@ -75,8 +73,6 @@ const onCopy = (text: string) => {
         </div>
 
         <div>
-
-
             <div v-for="(example, i) in exampleList" class="mb-12 p-2" style="background-color: #e2e8f0;">
                 <h4>样例{{ i + 1 }}</h4>
                 <div class="mb-10">
@@ -102,6 +98,11 @@ const onCopy = (text: string) => {
 
 
         </div>
+
+        <!-- <div class="mb-24">
+            <h3>hint</h3>
+            <div v-html="markdown.render(props.hint)"></div>
+        </div> -->
     </div>
 </template>
 
