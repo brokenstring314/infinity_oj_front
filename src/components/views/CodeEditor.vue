@@ -67,13 +67,16 @@ useResizeObserver(divDom, (entries: any) => {
 
 const onSubmit = async () => {
     result.value = "正在评测..."
+    resultColor.value = '#e2e8f0'
     showResult.value = false
     const data = await submitProblemService(route.params.id, language.value, btoa(toRaw(editor.value).getModel().getValue()))
     console.log(data.data)
     setTimeout(() => { }, 1000)
     const submissionData = (await getSubmissionService(data.data)).data
     console.log(submissionData)
-    resultColor.value = outMsgColor(submissionData.numberOfDependents)
+    const resultMag = outMsgColor(submissionData.status)
+    result.value = resultMag?.text
+    resultColor.value = resultMag?.color
     showResult.value = true
 
 
@@ -81,13 +84,13 @@ const onSubmit = async () => {
 </script>
 
 <template>
-    <div ref="divDom" class="p-5 h-full">
+    <div ref="divDom" class="p-5 h-screen">
         <div class="flex items-center mb-4">
             <span class="mr-5">选择语言:</span>
             <n-select v-model:value="language" :options="options" class="w-50" />
         </div>
 
-        <div ref="editorContainer" style="min-height: 90%;"></div>
+        <div ref="editorContainer" class="h-full"></div>
 
         <n-flex justify="space-between" align="center" class="h-16" :style="{ 'width': fixedWidth }">
 
