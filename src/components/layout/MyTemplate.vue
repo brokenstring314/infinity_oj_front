@@ -2,11 +2,13 @@
 import HeaderMenuTabs from './HeaderMenuTabs.vue';
 import HeaderSiteName from './HeaderSiteName.vue';
 import UserAvatar from './UserAvatar.vue';
+import { useroutesStore } from '../../store/index'
+const routeStore = useroutesStore()
 </script>
 
 <template>
     <n-layout class="h-full">
-        <n-layout-header class="h-auto">
+        <n-layout-header>
             <n-grid x-gap="12" :cols="12" item-responsive>
                 <n-grid-item span="2">
                     <header-site-name class="h-full"></header-site-name>
@@ -20,12 +22,12 @@ import UserAvatar from './UserAvatar.vue';
                 </n-grid-item>
             </n-grid>
         </n-layout-header>
-        <n-layout-content class="mt-12">
+        <n-layout-content>
             <Transition name="fade">
                 <router-view></router-view>
             </Transition>
         </n-layout-content>
-        <n-back-top :right="100" />
+        <n-back-top :right="100" v-if="routeStore.routerName === 'questionBank'" />
     </n-layout>
 </template>
 

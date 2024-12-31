@@ -98,11 +98,6 @@ const onCopy = (text: string) => {
 
 
         </div>
-
-        <!-- <div class="mb-24">
-            <h3>hint</h3>
-            <div v-html="markdown.render(props.hint)"></div>
-        </div> -->
     </div>
 </template>
 

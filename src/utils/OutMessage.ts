@@ -12,14 +12,6 @@ const msg = new Map<number, MsgInfoState>([
     [1015, { whetherSuccess: false, msg: "请求太过频繁,请等一等" }],
 ])
 
-// PENDING(0,"PENDING"),
-// ACCEPTED(1,"ACCEPTED"),
-// WRONG_ANSWER(2,"WRONG_ANSWER"),
-// TIME_LIMIT_EXCEEDED(3,"TIME_LIMIT_EXCEEDED"),
-// MEMORY_LIMIT_EXCEEDED(4,"MEMORY_LIMIT_EXCEEDED"),
-// COMPILE_ERROR(5,"COMPILE_ERROR"),
-// RUNTIME_ERROR(6,"RUNTIME_ERROR"),
-// SYSTEM_ERROR(7,"SYSTEM_ERROR");
 const colorMsg = new Map<string, any>([
     ["PENDING", { color: '#94a3b8', text: '正在评测' }],
     ["ACCEPTED", { color: '#84cc16', text: '答案正确' }],
@@ -30,6 +22,8 @@ const colorMsg = new Map<string, any>([
     ["RUNTIME_ERROR", { color: '#c4b5fd', text: '运行错误' }],
     ["SYSTEM_ERROR", { color: '#431407', text: '系统错误' }],
 ])
+
+export const paginationSize = 5
 
 export const outMessage = (code: number): void => {
     const ans: MsgInfoState | undefined = msg.get(code)

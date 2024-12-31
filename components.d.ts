@@ -80,6 +80,7 @@ declare module 'vue' {
     Sidebar: typeof import('./src/components/layout/Sidebar.vue')['default']
     SmallRank: typeof import('./src/components/views/SmallRank.vue')['default']
     SmallRankList: typeof import('./src/components/views/SmallRankList.vue')['default']
+    Spin: typeof import('./src/components/views/Spin.vue')['default']
     Test: typeof import('./src/components/Test.vue')['default']
     UserAvatar: typeof import('./src/components/layout/UserAvatar.vue')['default']
   }

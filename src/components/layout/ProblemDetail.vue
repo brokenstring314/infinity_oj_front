@@ -64,6 +64,7 @@ onMounted(async () => {
 
 <template>
     <n-space vertical>
+
         <n-layout has-sider>
             <n-layout-sider bordered collapse-mode="width" :collapsed-width="50" :width="150" :collapsed="collapsed"
                 show-trigger @collapse="collapsed = true" @expand="collapsed = false">
@@ -73,7 +74,7 @@ onMounted(async () => {
             <n-layout>
                 <n-split direction="horizontal" :max="0.75" :min="0.25">
                     <template #1>
-                        <n-spin size="large" v-if="!isLoading" />
+                        <Spin v-if="!isLoading"></Spin>
                         <PromlemText :input-examples="data.inputExamples" :output-examples="data.outputExamples"
                             :input="data.input" :out="data.output" :detail="data.description" v-else>
                             <template #title>{{ data.title }}</template>

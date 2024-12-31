@@ -13,6 +13,7 @@ const isLoadFinish: Ref<boolean> = ref(false)
 
 //获取数据
 onMounted(async () => {
+  isLoadFinish.value = false
   tagList.value = await (await getAllQuestionTagService()).data
   tagList.value.forEach((element: tagState) => {
     tagsClassifyList.value.push(element.tagCategory)
@@ -23,7 +24,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <n-spin class="m-auto" size="large" v-if="!isLoadFinish" />
+  <Spin v-if="!isLoadFinish"></Spin>
   <n-tabs type="line" animated v-else>
     <n-tab-pane v-for="tagsClassify in tagsClassifyList" :name="tagsClassify" :tab="tagsClassify">
       <block v-for="tag in tagList">

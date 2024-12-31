@@ -28,10 +28,11 @@ export const useQuestionStore = defineStore('question', () => {
 	}
 
 	const getQuestionList = async (page: any) => {
+		const data = await getSimpleProblemListByTagService(page)
+		questionList.value = data.data.records
 
-		questionList.value = (await getSimpleProblemListByTagService(page)).data.records
-
-		console.log(questionList.value)
+		console.log(data.data.total)
+		return data.data.total
 	}
 
 

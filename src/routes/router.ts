@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, Router } from 'vue-router'
 import { useroutesStore } from "../store/RoutesStore/RoutesStore.ts"
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { fromCodePoint } from 'markdown-it/lib/common/utils.mjs'
 
 const routes: any[] = [
     {
@@ -34,6 +35,7 @@ export const router: Router = createRouter({
     routes,
 })
 
+
 router.beforeEach((to, from) => {
     NProgress.start();
     useroutesStore().routerName = to.name
@@ -44,7 +46,8 @@ router.beforeEach((to, from) => {
 })
 
 //路由进入后
-router.afterEach(() => {
+router.afterEach((to, from) => {
     NProgress.done()
 })
+
 

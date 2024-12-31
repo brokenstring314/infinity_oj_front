@@ -1,6 +1,7 @@
 import { request } from '../utils/request.ts'
 import { useQuestionStore, useUserStore } from '../store/index.ts'
 import { GetProblemListState } from '../../types/OutTypes.ts'
+import { paginationSize } from '../utils/OutMessage.ts'
 
 
 
@@ -12,7 +13,7 @@ export const getSimpleProblemListByTagService = (page: any) => {
 		highScore: questionStore.searchIfon?.highScore ? questionStore.searchIfon.highScore : 99999999,
 		lowScore: questionStore.searchIfon?.lowScore ? questionStore.searchIfon.lowScore : 0,
 		current: Number(page),
-		size: 20,
+		size: paginationSize,
 		tags: {}
 	}
 	questionStore.tagIsSelectList.forEach(item => {
