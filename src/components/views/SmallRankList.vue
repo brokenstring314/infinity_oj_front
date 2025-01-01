@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { RankInfo } from '../../../types/RankInfo.ts'
 const data: RankInfo[] = [
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
-    { rank: 1, username: 'blg', scores: 1, passQuestion: 1 },
+    { rank: 1, username: 'KAZHYI', scores: 5, passQuestion: 3 },
+    { rank: 2, username: 'root', scores: 1, passQuestion: 1 },
+    { rank: 3, username: 'blg', scores: 0, passQuestion: 0 },
+    { rank: 4, username: 'blg', scores: 0, passQuestion: 0 },
+    { rank: 5, username: 'blg', scores: 0, passQuestion: 0 },
+    { rank: 6, username: 'blg', scores: 0, passQuestion: 0 },
+    { rank: 7, username: 'blg', scores: 0, passQuestion: 0 },
 ]
 function createColumns() {
     return [

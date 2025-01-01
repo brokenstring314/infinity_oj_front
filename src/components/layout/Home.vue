@@ -8,7 +8,7 @@ import OwnFrame from '../views/OwnFrame.vue';
 </script>
 
 <template>
-  <n-flex justify="center" class="pb-2 px-32">
+  <n-flex justify="center" class="pb-2 px-32 mt-8">
     <main>
       <Announcement></Announcement>
       <CompetitionInformation></CompetitionInformation>

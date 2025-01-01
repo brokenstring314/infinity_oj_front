@@ -63,32 +63,31 @@ onMounted(async () => {
 </script>
 
 <template>
-    <n-space vertical>
-
-        <n-layout has-sider>
-            <n-layout-sider bordered collapse-mode="width" :collapsed-width="50" :width="150" :collapsed="collapsed"
-                show-trigger @collapse="collapsed = true" @expand="collapsed = false">
-                <n-menu :collapsed="collapsed" :collapsed-width="64" :collapsed-icon-size="22" :options="menuOptions"
-                    :render-icon="renderMenuIcon" :expand-icon="expandIcon" />
-            </n-layout-sider>
-            <n-layout>
-                <n-split direction="horizontal" :max="0.75" :min="0.25">
-                    <template #1>
+    <n-layout has-sider>
+        <n-layout-sider bordered collapse-mode="width" :collapsed-width="50" :width="150" :collapsed="collapsed"
+            show-trigger @collapse="collapsed = true" @expand="collapsed = false">
+            <n-menu :collapsed="collapsed" :collapsed-width="64" :collapsed-icon-size="22" :options="menuOptions"
+                :render-icon="renderMenuIcon" :expand-icon="expandIcon" />
+        </n-layout-sider>
+        <n-layout-content>
+            <n-split direction="horizontal" :max="0.75" :min="0.25">
+                <template #1>
+                    <n-scrollbar>
                         <Spin v-if="!isLoading"></Spin>
+
                         <PromlemText :input-examples="data.inputExamples" :output-examples="data.outputExamples"
                             :input="data.input" :out="data.output" :detail="data.description" v-else>
                             <template #title>{{ data.title }}</template>
                             <template #timeLimit>{{ data.timeLimit }}</template>
                             <template #memoryLimit>{{ data.memoryLimit }}</template>
                         </PromlemText>
-                    </template>
-                    <template #2>
-                        <CodeEditor></CodeEditor>
-                    </template>
-                </n-split>
-            </n-layout>
-        </n-layout>
-    </n-space>
+                    </n-scrollbar>
+                </template>
+                <template #2>
+                    <CodeEditor style="height: 100%;" ></CodeEditor>
+                </template>
+            </n-split>
+        </n-layout-content>
+    </n-layout>
 </template>
-
 <style scoped></style>

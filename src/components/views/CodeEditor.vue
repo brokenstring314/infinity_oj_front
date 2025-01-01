@@ -84,22 +84,22 @@ const onSubmit = async () => {
 </script>
 
 <template>
-    <div ref="divDom" class="p-5 h-screen">
-        <div class="flex items-center mb-4">
+    <div ref="divDom" class="p-5 grid grid-rows-12">
+        <div class="flex items-center mb-4 row-span-1">
             <span class="mr-5">选择语言:</span>
             <n-select v-model:value="language" :options="options" class="w-50" />
         </div>
 
-        <div ref="editorContainer" class="h-full"></div>
+        <div ref="editorContainer" class="row-span-10"></div>
 
-        <n-flex justify="space-between" align="center" class="h-16" :style="{ 'width': fixedWidth }">
+        <div class="h-16 flex flex-row justify-between items-center" :style="{ 'width': fixedWidth }">
 
             <div v-if="result" :style="{ background: resultColor }" class="p-1">
                 {{ result }}
             </div>
             <div v-else></div>
             <n-button type='success' @click="onSubmit">提交</n-button>
-        </n-flex>
+        </div>
     </div>
 
 </template>
