@@ -39,7 +39,7 @@ const menuOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
-            path: '/questionSubmitRecord'
+            path: '/questionSubmitRecord/1'
           }
         },
         { default: () => '提交记录' }

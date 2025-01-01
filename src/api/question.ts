@@ -3,20 +3,32 @@ import { useQuestionStore, useUserStore } from '../store/index.ts'
 import { GetProblemListState } from '../../types/OutTypes.ts'
 import { paginationSize } from '../utils/OutMessage.ts'
 
-
+export const getSubmissionListService = (page: any) => {
+	const recordSearchIfon = useQuestionStore().recordSearchIfon
+	const data: any = {
+		current: page,
+		size: paginationSize,
+		problemId: recordSearchIfon.problemId ? recordSearchIfon.problemId : null,
+		userId: recordSearchIfon.userId ? recordSearchIfon.userId : null,
+		userName: recordSearchIfon.userName ? recordSearchIfon.userName : null
+	}
+	console.log(data)
+	console.log(recordSearchIfon.userId)
+	return request.post('api/problem/getSubmissionList', data)
+}
 
 export const getSimpleProblemListByTagService = (page: any) => {
-	const questionStore = useQuestionStore()
-
+	const issueSearchIfon = useQuestionStore().issueSearchIfon
+	const tagIsSelectList = useQuestionStore().tagIsSelectList
 	const data: GetProblemListState = {
-		searchString: questionStore.searchIfon?.searchString ? questionStore.searchIfon.searchString : '',
-		highScore: questionStore.searchIfon?.highScore ? questionStore.searchIfon.highScore : 99999999,
-		lowScore: questionStore.searchIfon?.lowScore ? questionStore.searchIfon.lowScore : 0,
+		searchString: issueSearchIfon?.searchString ? issueSearchIfon.searchString : '',
+		highScore: issueSearchIfon?.highScore ? issueSearchIfon.highScore : 99999999,
+		lowScore: issueSearchIfon?.lowScore ? issueSearchIfon.lowScore : 0,
 		current: Number(page),
 		size: paginationSize,
 		tags: {}
 	}
-	questionStore.tagIsSelectList.forEach(item => {
+	tagIsSelectList.forEach(item => {
 		if (data.tags?.[item.tagCategory])
 			data.tags[item.tagCategory].push(item.tagId)
 		else

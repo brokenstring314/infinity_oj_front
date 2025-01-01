@@ -18,7 +18,7 @@ const routes: any[] = [
                 ],
             },
             {
-                name: "questionSubmitRecord", path: 'questionSubmitRecord', component: () => import('../components/views/QuestionSubmitRecord.vue'), children: [
+                name: "questionSubmitRecord", path: 'questionSubmitRecord/:page', component: () => import('../components/layout/QuestionSubmitRecordBank.vue'), children: [
 
                 ],
             },

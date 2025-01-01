@@ -3,24 +3,28 @@ import { ref, Ref, h } from 'vue'
 import type { QuestionListInfoState, tagState } from '../../../types/OutTypes'
 import { CheckmarkSharp, Close, RemoveSharp } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
-import { getSimpleProblemListByTagService } from '../../api/question'
+import { getSimpleProblemListByTagService, getSubmissionListService } from '../../api/question'
 
 export const useQuestionStore = defineStore('question', () => {
 	//已选择tag列表
 	const tagIsSelectList: Ref<tagState[]> = ref([])
-	//搜索信息
-	const searchIfon: Ref<any> = ref({})
-
+	//题目搜索信息
+	const issueSearchIfon: Ref<any> = ref({})
+	//记录搜索信息
+	const recordSearchIfon: Ref<any> = ref({})
 
 	//题目列表数据
 	const questionList: Ref<QuestionListInfoState[]> = ref([])
+	//记录列表数据
+	const SubmitRecordList = ref([])
 
 
 
 
 	//清除搜索信息
 	const clearSearchInfo = () => {
-		searchIfon.value = {}
+		issueSearchIfon.value = {}
+		recordSearchIfon.value = {}
 		location.reload()
 	}
 	const addTag = (tag: tagState) => {
@@ -30,8 +34,12 @@ export const useQuestionStore = defineStore('question', () => {
 	const getQuestionList = async (page: any) => {
 		const data = await getSimpleProblemListByTagService(page)
 		questionList.value = data.data.records
+		return data.data.total
+	}
 
-		console.log(data.data.total)
+	const getSubmitRecordList = async (page: any) => {
+		const data = await getSubmissionListService(page)
+		SubmitRecordList.value = data.data.records
 		return data.data.total
 	}
 
@@ -82,10 +90,13 @@ export const useQuestionStore = defineStore('question', () => {
 		delectTag,
 		isTag,
 		isPassageH,
-		searchIfon,
+		issueSearchIfon,
 		clearSearchInfo,
 		getQuestionList,
-		questionList
+		questionList,
+		recordSearchIfon,
+		getSubmitRecordList,
+		SubmitRecordList
 	}
 }, {
 	persist: {

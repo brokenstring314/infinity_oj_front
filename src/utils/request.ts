@@ -20,7 +20,7 @@ request.interceptors.request.use(
 request.interceptors.response.use(
     (res) => {
         outMessage(res.data.code)
-        if (res.data.code >= 2000) return res.data
+        if (res.data.code >= 200) return res.data
         return Promise.reject(res)
     }, (err) => {
         Promise.reject(err)

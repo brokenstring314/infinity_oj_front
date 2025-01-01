@@ -28,16 +28,16 @@ const onSearch = async () => {
 
     <div class="flex items-center mb-5">
       <div class="min-w-26">选择难度</div>
-      <n-input style="width: 100px;" type="text" :allow-input="onlyAllowNumber" placeholder="最小分数"
-        v-model:value="questionStore.searchIfon.lowScore" />
+      <n-input style="width: 10em;" type="text" :allow-input="onlyAllowNumber" placeholder="最小分数"
+        v-model:value="questionStore.issueSearchIfon.lowScore" />
       <n-icon :component="RemoveSharp"></n-icon>
-      <n-input style="width: 100px;" type="text" :allow-input="onlyAllowNumber" placeholder="最大分数"
-        v-model:value="questionStore.searchIfon.highScore" />
+      <n-input style="width: 10em;" type="text" :allow-input="onlyAllowNumber" placeholder="最大分数"
+        v-model:value="questionStore.issueSearchIfon.highScore" />
     </div>
 
     <div class="flex items-center mb-5">
       <div class="min-w-26">搜索题目</div>
-      <n-input style="width: 400px;" placeholder="输入题目名称" v-model:value="questionStore.searchIfon.searchString" />
+      <n-input style="width: 30em;" placeholder="输入题目名称" v-model:value="questionStore.issueSearchIfon.searchString" />
     </div>
 
     <div class="flex items-center mb-5">

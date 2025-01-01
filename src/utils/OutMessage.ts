@@ -23,6 +23,7 @@ const colorMsg = new Map<string, any>([
     ["SYSTEM_ERROR", { color: '#431407', text: '系统错误' }],
 ])
 
+
 export const paginationSize = 5
 
 export const outMessage = (code: number): void => {
