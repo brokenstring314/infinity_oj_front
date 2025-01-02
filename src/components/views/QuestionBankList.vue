@@ -23,7 +23,7 @@ const getQuestionList = async () => {
   isLoadFinish.value = false
   console.log(route.params.page)
   currentPage.value = Number(route.params.page)
-  questionTotal.value = await questionStore.getQuestionList(route.params.page)
+  await questionStore.getQuestionList(route.params.page)
   console.log(questionStore.questionList)
   isLoadFinish.value = true
 }
@@ -133,7 +133,7 @@ getQuestionList()
       </template>
       <template #footer>
         <n-pagination
-          :page-count="Math.floor(questionTotal / paginationSize) + (questionTotal % paginationSize ? 1 : 0)"
+          :page-count="Math.floor(questionStore.questionTotal / paginationSize) + (questionStore.questionTotal % paginationSize ? 1 : 0)"
           :page="currentPage" :on-update:page="pageChange" />
       </template>
     </n-list>

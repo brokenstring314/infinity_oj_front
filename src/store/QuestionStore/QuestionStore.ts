@@ -15,6 +15,8 @@ export const useQuestionStore = defineStore('question', () => {
 
 	//题目列表数据
 	const questionList: Ref<QuestionListInfoState[]> = ref([])
+	//题目总条数
+	const questionTotal = ref(0)
 	//记录列表数据
 	const SubmitRecordList = ref([])
 
@@ -25,6 +27,7 @@ export const useQuestionStore = defineStore('question', () => {
 	const clearSearchInfo = () => {
 		issueSearchIfon.value = {}
 		recordSearchIfon.value = {}
+		tagIsSelectList.value = []
 		location.reload()
 	}
 	const addTag = (tag: tagState) => {
@@ -34,7 +37,7 @@ export const useQuestionStore = defineStore('question', () => {
 	const getQuestionList = async (page: any) => {
 		const data = await getSimpleProblemListByTagService(page)
 		questionList.value = data.data.records
-		return data.data.total
+		questionTotal.value = data.data.total
 	}
 
 	const getSubmitRecordList = async (page: any) => {
@@ -96,7 +99,8 @@ export const useQuestionStore = defineStore('question', () => {
 		questionList,
 		recordSearchIfon,
 		getSubmitRecordList,
-		SubmitRecordList
+		SubmitRecordList,
+		questionTotal
 	}
 }, {
 	persist: {
